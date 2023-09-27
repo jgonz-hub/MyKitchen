@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>MyKitchen</title>
+</head>
+<body>
+    <h1>Welcome to MyKitchen</h1>
+    <div class="search-bar">
+        <form action="/search" method="post">
+            <input type="text" name="search_query" placeholder="Search recipes...">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <div class="recipe-grid">
+        {% for recipe in recipes %}
+        <div class="recipe-card">
+            <h2><a href="{{ url_for('recipe', recipe_id=recipe['id']) }}">{{ recipe['title'] }}</a></h2>
+            <p>{{ recipe['description'] }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
